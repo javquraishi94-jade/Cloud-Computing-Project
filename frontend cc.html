@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediCare - Hospital Management System</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f3f7fb;
+    color: #243b53;
+}
+
+/* HEADER */
+header {
+    background: #123b61;
+    color: white;
+    padding: 18px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h2 {
+    font-size: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #55d6be;
+}
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(120deg, #123b61, #1685b8);
+    color: white;
+    padding: 85px 8%;
+    min-height: 330px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* BUTTONS */
+button {
+    background: #1685b8;
+    color: white;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+button:hover {
+    background: #0e668e;
+}
+
+/* COMMON SECTIONS */
+section {
+    padding: 40px 6%;
+}
+
+section h2 {
+    margin-bottom: 25px;
+    color: #123b61;
+}
+
+/* DASHBOARD CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #dce5ed;
+}
+
+.card h3 {
+    font-size: 16px;
+}
+
+.card h1 {
+    color: #1685b8;
+    margin-top: 15px;
+    font-size: 30px;
+}
+
+/* FORMS */
+form {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 650px;
+    box-shadow: 0 3px 12px #dce5ed;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    border: 1px solid #ccd8e2;
+    border-radius: 6px;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 14px;
+    border: 1px solid #dce5ed;
+    text-align: left;
+}
+
+th {
+    background: #123b61;
+    color: white;
+}
+
+/* DOCTOR CARDS */
+.doctor {
+    text-align: center;
+}
+
+.doctor h3 {
+    color: #123b61;
+    margin-bottom: 10px;
+}
+
+.doctor p {
+    color: #64748b;
+}
+
+/* FOOTER */
+footer {
+    background: #123b61;
+    color: white;
+    text-align: center;
+    padding: 22px;
+}
+
+.message {
+    margin-top: 15px;
+    color: #087b57;
+    font-weight: bold;
+}
+
+@media(max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    nav a {
+        display: inline-block;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <h2>❤ MediCare</h2>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#patients">Patients</a>
+        <a href="#doctors">Doctors</a>
+        <a href="#appointments">Appointments</a>
+    </nav>
+</header>
+
+<!-- HOME -->
+<div class="hero" id="home">
+    <h1>Welcome to MediCare Hospital</h1>
+    <p>Your Health, Our Priority.</p>
+    <p>Smart and Modern Hospital Management System</p>
+
+    <button onclick="showMessage()">
+        Get Started
+    </button>
+</div>
+
+<!-- DASHBOARD -->
+<section id="dashboard">
+    <h2>Hospital Dashboard</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Patients</h3>
+            <h1 id="patientCount">1250</h1>
+        </div>
+
+        <div class="card">
+            <h3>Total Doctors</h3>
+            <h1>48</h1>
+        </div>
+
+        <div class="card">
+            <h3>Appointments</h3>
+            <h1 id="appointmentCount">86</h1>
+        </div>
+
+        <div class="card">
+            <h3>Available Beds</h3>
+            <h1>32</h1>
+        </div>
+
+    </div>
+</section>
+
+<!-- PATIENT REGISTRATION -->
+<section id="patients">
+    <h2>Patient Registration</h2>
+
+    <form id="patientForm">
+
+        <input type="text"
+        id="name"
+        placeholder="Enter Patient Name"
+        required>
+
+        <input type="number"
+        id="age"
+        placeholder="Enter Age"
+        min="1"
+        max="120"
+        required>
+
+        <select id="gender" required>
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <input type="text"
+        id="disease"
+        placeholder="Enter Disease"
+        required>
+
+        <button type="submit">
+            Register Patient
+        </button>
+
+    </form>
+
+    <h3 style="margin-top:30px;">Registered Patients</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Disease</th>
+            </tr>
+        </thead>
+
+        <tbody id="patientList">
+        </tbody>
+    </table>
+</section>
+
+<!-- DOCTORS -->
+<section id="doctors">
+    <h2>Our Doctors</h2>
+
+    <div class="cards">
+
+        <div class="card doctor">
+            <h3>Dr. Rahul Sharma</h3>
+            <p>Cardiologist</p>
+            <p>Experience: 10 Years</p>
+        </div>
+
+        <div class="card doctor">
+            <h3>Dr. Priya Singh</h3>
+            <p>Neurologist</p>
+            <p>Experience: 8 Years</p>
+        </div>
+
+        <div class="card doctor">
+            <h3>Dr. Aman Verma</h3>
+            <p>General Physician</p>
+            <p>Experience: 12 Years</p>
+        </div>
+
+        <div class="card doctor">
+            <h3>Dr. Neha Gupta</h3>
+            <p>Dermatologist</p>
+            <p>Experience: 6 Years</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- APPOINTMENTS -->
+<section id="appointments">
+    <h2>Book Appointment</h2>
+
+    <form id="appointmentForm">
+
+        <input type="text"
+        id="appointmentName"
+        placeholder="Enter Patient Name"
+        required>
+
+        <select id="doctor" required>
+            <option value="">Select Doctor</option>
+            <option>Dr. Rahul Sharma</option>
+            <option>Dr. Priya Singh</option>
+            <option>Dr. Aman Verma</option>
+            <option>Dr. Neha Gupta</option>
+        </select>
+
+        <input type="date"
+        id="date"
+        required>
+
+        <button type="submit">
+            Book Appointment
+        </button>
+
+        <p id="appointmentMessage" class="message"></p>
+
+    </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <h3>MediCare Hospital Management System</h3>
+    <p>© 2026 All Rights Reserved</p>
+    <p>Smart Healthcare | Better Future</p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+
+// GET STARTED
+function showMessage() {
+    alert("Welcome to MediCare Hospital!");
+    document.getElementById("dashboard")
+    .scrollIntoView({behavior: "smooth"});
+}
+
+// PATIENT REGISTRATION
+document.getElementById("patientForm")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+    let gender = document.getElementById("gender").value;
+    let disease = document.getElementById("disease").value;
+
+    let row = document.createElement("tr");
+
+    [name, age, gender, disease].forEach(function(value) {
+        let cell = document.createElement("td");
+        cell.textContent = value;
+        row.appendChild(cell);
+    });
+
+    document.getElementById("patientList")
+    .appendChild(row);
+
+    let count = document.getElementById("patientCount");
+
+    count.textContent =
+    Number(count.textContent) + 1;
+
+    alert("Patient Registered Successfully!");
+
+    this.reset();
+});
+
+// APPOINTMENT BOOKING
+document.getElementById("appointmentForm")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    let name = document.getElementById("appointmentName").value;
+    let doctor = document.getElementById("doctor").value;
+    let date = document.getElementById("date").value;
+
+    document.getElementById("appointmentMessage")
+    .textContent =
+    "Appointment booked for " + name +
+    " with " + doctor + " on " + date;
+
+    let count =
+    document.getElementById("appointmentCount");
+
+    count.textContent =
+    Number(count.textContent) + 1;
+
+    this.reset();
+});
+
+</script>
+
+</body>
+</html>
